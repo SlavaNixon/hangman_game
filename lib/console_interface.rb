@@ -20,17 +20,17 @@ class ConsoleInterface
   # класса Game (количество ошибок, сколько осталось попыток и т.д.)
   def print_out
     puts <<~END
-      Слово: #{word_to_show}
-      #{figure}
-      Ошибки (#{@game.errors_made}): #{errors_to_show}
-      У вас осталось ошибок: #{@game.errors_allowed}
+      Слово: #{word_to_show.colorize(:yellow)}
+      #{figure.colorize(:light_blue)}
+      Ошибки (#{@game.errors_made.to_s.colorize(:light_red)}): #{errors_to_show.to_s.colorize(:light_green)}
+      У вас осталось ошибок: #{@game.errors_allowed.to_s.colorize(:green)}
 
     END
 
     if @game.won?
-      puts "Поздравляем, вы выиграли!"
+      puts "Поздравляем, вы выиграли!".colorize(:blue)
     elsif @game.lost?
-      puts "Вы проиграли, загаданное слово: #{@game.word}"
+      puts "Вы проиграли, загаданное слово: #{@game.word}".colorize(:red)
     end
   end
 
